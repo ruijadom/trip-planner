@@ -9,7 +9,8 @@ import { Trip } from "./types";
 import { Container, VStack, Grid, Box, Center, Text } from "@chakra-ui/react";
 import { Card } from "./components/card";
 
-import { kgToMetricTons } from "./utils/measures"
+import { kgToMetricTons } from "./utils/measures";
+import { Layout } from "./components/layout";
 
 // This are the variables that we will use to implement pagination.
 // Since we don't have a ready response from an database for implementing cursor-based pagination,
@@ -73,7 +74,7 @@ function App() {
   ) : isError ? (
     <p>{(error as Error).message}</p>
   ) : (
-    <VStack bg="gray.100" padding={0} margin={0}>
+    <Layout>
       <Container
         maxW="7xl"
         py="12"
@@ -130,7 +131,7 @@ function App() {
           </Center>
         </Box>
       </Container>
-    </VStack>
+    </Layout>
   );
 }
 

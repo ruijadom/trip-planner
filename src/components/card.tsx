@@ -11,6 +11,7 @@ import {
   Card as ChakraCard,
   Center,
 } from "@chakra-ui/react";
+import { StarRating } from "./star-rating";
 
 interface CardProps {
   title: string;
@@ -102,9 +103,13 @@ export const Card = ({
               <Text fontSize="sm" fontWeight="bold">
                 Trip rating
               </Text>
-              <Text fontSize="sm" fontWeight="bold">
-                {rating}
-              </Text>
+
+              <Flex alignItems="center">
+                <StarRating rating={rating} />
+                <Text fontSize="sm" fontWeight="bold" ml="2">
+                  {rating}
+                </Text>
+              </Flex>
             </Flex>
           </Stack>
         </Box>
