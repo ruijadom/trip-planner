@@ -27,6 +27,7 @@ This project is a responsive web application built with ReactJS functional compo
 
     This command starts the mock server and the client app concurrently.
 
+
    ```bash
     npm run dev
     ```
