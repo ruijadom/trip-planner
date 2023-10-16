@@ -1,6 +1,11 @@
 # Trip planner
 
-# Project Name
+- [Trip planner](#trip-planner)
+  - [Description](#description)
+  - [Technologies Used](#technologies-used)
+  - [Installation](#installation)
+  - [Screenshots](#screenshots)
+
 
 ## Description
 
@@ -32,3 +37,14 @@ This project is a responsive web application built with ReactJS functional compo
     npm run dev
     ```
 4. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+
+## Screenshots
+
+Trips view
+
+![Image 1](./resources/trips.png)
+
+Trip details view
+
+![Image 2](./resources/trip-details.png)
