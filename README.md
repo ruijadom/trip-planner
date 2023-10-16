@@ -1,27 +1,33 @@
-# React + TypeScript + Vite
+# Trip planner
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Project Name
 
-Currently, two official plugins are available:
+## Description
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This project is a responsive web application built with ReactJS functional components and Typescript. It uses ChakraUI for UI components, fetches data asynchronously from a mock server serving JSON files, and implements infinite scrolling for loading new cards as the user scrolls. Data from the server is cached and preserved between pages. Additionally, there's a feature to pull details of a trip from a separate single-trip endpoint.
 
-## Expanding the ESLint configuration
+## Technologies Used
+- React
+- Typescript
+- ChakraUI
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Installation
 
-- Configure the top-level `parserOptions` property like this:
+1. Clone the repository.
+   ```bash
+   git clone https://github.com/ruijadom/trip-planner.git
+   cd trip-planner
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
+2. Install dependencies.
+   ```bash
+   npm install
+   ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+3. Start the development server.
+
+    This command starts the mock server and the client app concurrently.
+
+   ```bash
+    npm run dev
+    ```
+4. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
