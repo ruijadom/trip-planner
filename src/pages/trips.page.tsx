@@ -1,14 +1,14 @@
 import { useEffect, Fragment } from "react";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { useInView } from "react-intersection-observer";
-
-import { api } from "../services/api";
-import { Trip } from "../types";
-
 import { Grid, Box, Center, Text } from "@chakra-ui/react";
-import { Card } from "../components/card";
 
-import { kgToMetricTons } from "../utils/metrics";
+import { api } from "@/services/api";
+import { Trip } from "@/types";
+
+import { Card } from "@/components/card";
+import { kgToMetricTons } from "@/utils/metrics";
+
 
 // This are the variables that we will use to implement pagination.
 // Since we don't have a ready response from an database for implementing cursor-based pagination,

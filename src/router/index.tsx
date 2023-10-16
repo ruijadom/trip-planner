@@ -1,10 +1,8 @@
-import * as React from "react";
 import { RouteObject } from "react-router-dom";
 
-import { Layout } from "../components/layout";
-
-import { TripsPage } from "../pages/trips.page";
-import { TripDetailsPage } from "../pages/trip-details.page";
+import { Layout } from "@/components/layout";
+import { TripsPage } from "@/pages/trips.page";
+import { TripDetailsPage } from "@/pages/trip-details.page";
 
 const normalRoutes: RouteObject = {
   path: "*",
