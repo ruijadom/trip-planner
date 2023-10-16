@@ -1,6 +1,8 @@
 import { useEffect, Fragment } from "react";
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { useInView } from "react-intersection-observer";
+// import { useInView } from "react-intersection-observer";
+import useIntersectionObserver from "@/utils/hooks/use-intersection-observer"
+
 import { Grid, Box, Center, Text } from "@chakra-ui/react";
 
 import { api } from "@/services/api";
@@ -26,8 +28,6 @@ const totalNumberOfTrips = 70;
  * @returns {Promise<Trip[]>} - A promise that resolves to an array of Trip objects.
  */
 async function fetchTrips({ pageParam = 1 }): Promise<Trip[]> {
-  await new Promise((resolve) => setTimeout(resolve, 500));
-
   const response = await api.get(
     `/trips?_page=${pageParam}&_limit=${pageSize}`
   );
@@ -35,7 +35,7 @@ async function fetchTrips({ pageParam = 1 }): Promise<Trip[]> {
 }
 
 export const TripsPage = () => {
-  const { ref, inView } = useInView();
+  // const { ref, inView } = useInView();
 
   const currentPage = 1;
   const numberOfPages = Math.round(totalNumberOfTrips / pageSize);
@@ -60,11 +60,12 @@ export const TripsPage = () => {
     staleTime: 1000 * 60 * 30, // Refetch data every 30 minutes
   });
 
-  useEffect(() => {
-    if (inView) {
-      fetchNextPage();
-    }
-  }, [fetchNextPage, inView]);
+  const loadMoreRef = useIntersectionObserver(fetchNextPage, {
+    root: null,
+    rootMargin: "0px",
+    threshold: 1,
+  });
+
 
   if (isLoading) {
     return <p>loading...</p>;
@@ -102,6 +103,7 @@ export const TripsPage = () => {
             <Fragment key={idx}>
               {group.map((trip: Trip) => (
                 <Card
+                  ref={idx === data.pages.length - 1 ? loadMoreRef : null}
                   key={trip.id}
                   id={trip.id}
                   title={trip?.title}
@@ -117,7 +119,7 @@ export const TripsPage = () => {
         })}
       </Grid>
       <Box mt="12">
-        <Center w="full" ref={ref}>
+        <Center w="full">
           <Text fontSize="lg" fontWeight="light">
             {isFetchingNextPage
               ? "Loading more..."

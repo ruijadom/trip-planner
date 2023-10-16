@@ -12,12 +12,11 @@ import {
 } from "@chakra-ui/react";
 import { useQuery } from "@tanstack/react-query";
 import { CalendarIcon, ChatIcon, PhoneIcon, SunIcon } from "@chakra-ui/icons";
-import { api } from "@/services/api";
 
+import { api } from "@/services/api";
 import { Trip } from "@/types";
 import { Dot } from "@/components/dot";
 import { kgToMetricTons } from "@/utils/metrics";
-
 
 
 // Define an array of icon components
@@ -43,8 +42,6 @@ export const TripDetailsPage = () => {
   const { tripId } = useParams(); // Get the tripId from the URL
 
   async function fetchTrip(): Promise<Trip> {
-    await new Promise((resolve) => setTimeout(resolve, 500));
-
     const response = await api.get(`/trips/${tripId}`);
     return response.data;
   }
