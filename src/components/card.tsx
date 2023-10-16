@@ -87,10 +87,10 @@ export const Card = ({
               bg="brand.900"
               borderRadius="lg"
             >
-              <Text color="white" fontSize="sm">
+              <Text color="white" fontSize="sm" isTruncated>
                 Emissions offset:
               </Text>
-              <Text color="white" fontSize="sm">
+              <Text color="white" fontSize="sm" isTruncated>
                 {emissions} CO <Text as="sup">2</Text>e
               </Text>
             </Flex>
@@ -102,7 +102,7 @@ export const Card = ({
               bg="white"
               borderTopRadius="lg"
             >
-              <Text fontSize="sm" fontWeight="bold">
+              <Text fontSize="sm" fontWeight="bold" isTruncated>
                 Trip rating
               </Text>
 

@@ -90,7 +90,8 @@ export const TripsPage = () => {
         gap={{
           base: 4,
           md: 4,
-          lg: 6,
+          lg: 4,
+          xl: 6,
         }}
         gridAutoFlow="dense"
         justifyContent="center"
