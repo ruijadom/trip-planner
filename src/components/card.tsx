@@ -1,6 +1,6 @@
+import { Link } from "react-router-dom"
+
 import {
-  HStack,
-  VStack,
   Button,
   Box,
   Image,
@@ -8,26 +8,26 @@ import {
   Text,
   Flex,
   Stack,
-  Card as ChakraCard,
+  VStack,
   Center,
 } from "@chakra-ui/react";
 import { StarRating } from "./star-rating";
 
 interface CardProps {
+  id: number;
   title: string;
   countries: string[];
   days: number;
-  action: React.ReactNode;
   emissions: string;
   img: string;
   rating: number;
 }
 
 export const Card = ({
+  id,
   title,
   countries,
   days,
-  action,
   emissions,
   img,
   rating,
@@ -72,9 +72,11 @@ export const Card = ({
           </VStack>
 
           <Center my="10">
-            <Button colorScheme="blue" borderRadius="lg">
+          <Link to={`/trips/${id}`}>
+            <Button colorScheme="blue"  borderRadius="lg">
               Learn more
             </Button>
+          </Link>
           </Center>
 
           <Stack w="full" display="flex" spacing={2}>
@@ -89,7 +91,7 @@ export const Card = ({
                 Emissions offset:
               </Text>
               <Text color="white" fontSize="sm">
-                {emissions} CO<sub>2</sub>e
+                {emissions} CO <Text as="sup">2</Text>e
               </Text>
             </Flex>
 
