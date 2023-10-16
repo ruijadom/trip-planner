@@ -3,40 +3,17 @@ import {
   Link as ChakraLink,
   Heading,
   Stack,
-  Divider,
   Image,
   Text,
   Box,
   Flex,
-  SimpleGrid,
 } from "@chakra-ui/react";
 import { useQuery } from "@tanstack/react-query";
-import { CalendarIcon, ChatIcon, PhoneIcon, SunIcon } from "@chakra-ui/icons";
 
 import { api } from "@/services/api";
 import { Trip } from "@/types";
-import { Dot } from "@/components/dot";
-import { kgToMetricTons } from "@/utils/metrics";
-
-
-// Define an array of icon components
-const icons: (
-  | typeof CalendarIcon
-  | typeof ChatIcon
-  | typeof PhoneIcon
-  | typeof SunIcon
-)[] = [CalendarIcon, ChatIcon, PhoneIcon, SunIcon];
-
-// Create an object map with icons and their respective keys/index
-const iconMap: Record<
-  number,
-  typeof CalendarIcon | typeof ChatIcon | typeof PhoneIcon | typeof SunIcon
-> = {};
-
-icons.forEach((IconComponent, index) => {
-  // You can use the index as the key, or provide custom keys if needed
-  iconMap[index] = IconComponent;
-});
+import { Overview } from "@/components/overview";
+import { InfoCard } from "@/components/info-card";
 
 export const TripDetailsPage = () => {
   const { tripId } = useParams(); // Get the tripId from the URL
@@ -83,7 +60,7 @@ export const TripDetailsPage = () => {
         Go back
       </ChakraLink>
 
-      {/* Title */}
+      {/* Heading */}
       <Box position="relative" mt="12" h="full" w="full">
         {title && (
           <Heading as="h1" fontWeight="bold" fontSize="3xl" isTruncated>
@@ -98,7 +75,7 @@ export const TripDetailsPage = () => {
         )}
       </Box>
 
-      {}
+      {/* Image, Overview, and InfoCard */}
       <Flex
         mt="6"
         justify={{ base: "center", md: "space-between", xl: "space-between" }}
@@ -113,88 +90,14 @@ export const TripDetailsPage = () => {
             borderRadius="12"
             shadow="xl"
           />
-          <Box mt="8">
-            <Heading as="h2" fontSize="lg">
-              Overview
-            </Heading>
-
-            {advantages && (
-              <SimpleGrid columns={2} spacing={2} mt="4">
-                {advantages.map((advantage, index) => {
-                  const IconAtIndex = iconMap[index];
-
-                  return (
-                    <Flex>
-                      <Box>{iconMap[index] && <IconAtIndex mr="2" />}</Box>
-
-                      <Box>
-                        <Text fontSize="md" fontWeight="semibold">
-                          {advantage.title}
-                        </Text>
-                        <Text fontSize="xs" fontWeight="light">
-                          {advantage.description}
-                        </Text>
-                      </Box>
-                    </Flex>
-                  );
-                })}
-              </SimpleGrid>
-            )}
-
-            <Divider my="6" />
-
-            {description && (
-              <Text mt="2" fontSize="sm">
-                {description}
-              </Text>
-            )}
-          </Box>
+          <Overview advantages={advantages} description={description} />
         </Box>
 
-        <Box
-          h="full"
-          w={{ base: "100%", md: "30%" }}
-          mt={{ base: 12, md: 0 }}
-          ml={{ base: 0, md: 10 }}
-          bg="white"
-          border={{ base: "none", md: "1px solid #E2E8F0" }}
-          borderRadius="12"
-          p="6"
-        >
-          {days && (
-            <Heading
-              as="h1"
-              fontSize="2xl"
-              isTruncated
-            >
-              {days} Days
-            </Heading>
-          )}
-          {co2kilograms && (
-            <Text fontSize="sm" mt="1">
-              Emissions: {kgToMetricTons(co2kilograms)} CO
-              <Text as="sup">2</Text>e
-            </Text>
-          )}
-
-          <Divider my="4" />
-
-          {countries && (
-            <Box>
-              Countries included:
-              <SimpleGrid columns={2} spacing={2} mt="2">
-                {countries.map((country) => (
-                  <Flex alignItems="center">
-                    <Dot />
-                    <Text fontSize="sm" ml="2">
-                      {country}
-                    </Text>
-                  </Flex>
-                ))}
-              </SimpleGrid>
-            </Box>
-          )}
-        </Box>
+        <InfoCard
+          days={days}
+          co2kilograms={co2kilograms}
+          countries={countries}
+        />
       </Flex>
     </Stack>
   );
