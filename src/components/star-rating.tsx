@@ -1,6 +1,6 @@
 import { StarIcon } from "@chakra-ui/icons";
 import { Box, HStack } from "@chakra-ui/layout";
-import { Trip } from "../types";
+import { Trip } from "@/types";
 
 export const StarRating = ({ rating }: Pick<Trip, "rating">) => {
   // Round the rating to the nearest whole number

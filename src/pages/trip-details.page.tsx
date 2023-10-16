@@ -10,15 +10,14 @@ import {
   Flex,
   SimpleGrid,
 } from "@chakra-ui/react";
-
-import { api } from "../services/api";
 import { useQuery } from "@tanstack/react-query";
-import { Trip } from "../types";
-import { kgToMetricTons } from "../utils/metrics";
-
 import { CalendarIcon, ChatIcon, PhoneIcon, SunIcon } from "@chakra-ui/icons";
 
-import { Dot } from "../components/dot";
+import { api } from "@/services/api";
+import { Trip } from "@/types";
+import { Dot } from "@/components/dot";
+import { kgToMetricTons } from "@/utils/metrics";
+
 
 // Define an array of icon components
 const icons: (
@@ -43,8 +42,6 @@ export const TripDetailsPage = () => {
   const { tripId } = useParams(); // Get the tripId from the URL
 
   async function fetchTrip(): Promise<Trip> {
-    await new Promise((resolve) => setTimeout(resolve, 500));
-
     const response = await api.get(`/trips/${tripId}`);
     return response.data;
   }
@@ -86,9 +83,10 @@ export const TripDetailsPage = () => {
         Go back
       </ChakraLink>
 
+      {/* Title */}
       <Box position="relative" mt="12" h="full" w="full">
         {title && (
-          <Heading as="h1" fontWeight="bold" fontSize="x-large" isTruncated>
+          <Heading as="h1" fontWeight="bold" fontSize="3xl" isTruncated>
             {title}
           </Heading>
         )}
@@ -100,6 +98,7 @@ export const TripDetailsPage = () => {
         )}
       </Box>
 
+      {}
       <Flex
         mt="6"
         justify={{ base: "center", md: "space-between", xl: "space-between" }}
@@ -165,10 +164,7 @@ export const TripDetailsPage = () => {
           {days && (
             <Heading
               as="h1"
-              fontSize="x-large"
-              size="xl"
-              fontWeight="bold"
-              color="primary.800"
+              fontSize="2xl"
               isTruncated
             >
               {days} Days
