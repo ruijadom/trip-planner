@@ -1,4 +1,4 @@
-import { useEffect, Fragment } from "react";
+import { Fragment } from "react";
 import { useInfiniteQuery } from "@tanstack/react-query";
 // import { useInView } from "react-intersection-observer";
 import useIntersectionObserver from "@/utils/hooks/use-intersection-observer"
